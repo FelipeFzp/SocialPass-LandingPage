@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<head>
+    <%- include('../common/head',
+        {
+        title: 'X-Pass'
+        })
+        %>
+
+        <meta name="description"
+              content="<%= userCard.bio %>">
+
+        <meta property="og:title"
+              content="<%= userCard.name %>" />
+        <meta property="og:url"
+              content="<%= 'https://x-pass.app/' + userCard.nickname %>" />
+        <meta property="og:image"
+              itemprop="image"
+              content="<%= userCard.imageUrl %>" />
+        <meta property="og:description"
+              content="<%= userCard.bio %>">
+
+        <meta name="twitter:title"
+              content="<%= userCard.name %>" />
+        <meta name="twitter:description"
+              content="<%= userCard.bio %>" />
+        <meta name="twitter:url"
+              content="<%= 'https://x-pass.app/' + userCard.nickname %>" />
+        <meta name="twitter:image"
+              content="<%= userCard.imageUrl %>">
+
+        <style>
+            body {
+                overflow: hidden;
+            }
+
+            .container-fluid {
+                padding: 0;
+            }
+
+            .background {
+                width: 100%;
+                height: 100vh;
+                position: absolute;
+                filter: brightness(0.85) blur(<%=userCard.card.background.blur%>px);
+                background-position: center center !important;
+                background-size: cover !important;
+                background: <%=userCard.card.background.imageUrl ? 'url('+ userCard.card.background.imageUrl +')': 'rgb('+ userCard.card.background.colorRgb[0] +', '+ userCard.card.background.colorRgb[1] +', '+ userCard.card.background.colorRgb[2] +')'%>;
+            }
+
+            .content {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+
+            /* @media only screen and (min-width: 400px) {
+                .content:after {
+                    width: calc(100vw - 400px);
+                    height: 100%;
+                    content: " ";
+                    top: 0;
+                    right: calc(0px + 400px);
+                    position: absolute;
+                    background-color: white;
+                }
+
+                .content:before {
+                    width: 400px;
+                    height: 100%;
+                    content: " ";
+                    top: 0;
+                    left: 400px;
+                    position: absolute;
+                    background-color: white;
+                }
+            } */
+
+
+            .desktop {
+                width: 100% !important;
+            }
+
+            .header {
+                padding: 25px 42px 0;
+                margin-bottom: 14px;
+                color: <%=userCard.card.background.contrastColor %>;
+            }
+
+            .header img {
+                width: 72px;
+                height: 72px;
+                border-radius: 50%;
+                margin-right: 20px;
+                object-fit: cover;
+                object-position: center center;
+            }
+
+            .header .infos {
+                width: calc(100% - 92px);
+            }
+
+            .header .infos .name {
+                font-size: 18px;
+                font-weight: 600;
+                letter-spacing: 0.4px;
+            }
+
+            .header .infos .bio {
+                font-size: 12px;
+                max-height: 32px;
+                overflow: hidden;
+                overflow-wrap: break-word;
+            }
+
+            .icon-grid {
+                padding: 0 24px;
+            }
+
+            .icon-grid a {
+                text-decoration: none;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .icon {
+                padding: 5px;
+                text-align: center;
+                color: <%=userCard.card.background.contrastColor %>;
+            }
+
+            .icon img {
+                max-width: 48px;
+                max-height: 48px;
+                margin-bottom: 12px;
+            }
+
+            .icon .title {
+                font-size: 12px;
+                margin-bottom: 12px;
+                color: <%=userCard.card.background.contrastColor %>;
+            }
+
+            .icon a {
+                text-decoration: none;
+            }
+
+            .register {
+                width: 270px;
+                position: fixed;
+                bottom: 18px;
+                transform: translateX(calc(50vw - 135px));
+                color: #ffffff;
+                background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+                animation: background-frames 10s ease-in-out infinite;
+                background-size: 400% 400%;
+                cursor: pointer;
+            }
+
+            @keyframes background-frames {
+                0% {
+                    background-position: 0 50%;
+                }
+
+                50% {
+                    background-position: 100% 50%;
+                }
+
+                100% {
+                    background-position: 0 50%;
+                }
+            }
+
+            .register:hover {
+                color: <%=userCard.card.background.contrastColor %>;
+            }
+
+            .status-bar {
+                width: 100%;
+                height: 28px;
+                background-color: rgba(0, 0, 0, 0.3);
+                color: white;
+                padding: 0 16px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: 14px;
+                border-top-left-radius: 12px;
+                border-top-right-radius: 12px;
+            }
+
+            .status-bar .views {
+                display: flex;
+                align-items: center;
+            }
+
+            .status-bar .views img {
+                margin-right: 8px;
+            }
+
+            .status-bar .views span {
+                font-size: 16px;
+            }
+        </style>
+</head>
+
+<body>
+
+    <div id="root">
+        <div class="background"></div>
+        <div class="content">
+            <div class="container-fluid">
+
+                <div class="status-bar">
+                    <div class="left-container"></div>
+                    <div class="right-container">
+                        <div class="views">
+                            <img width="16px"
+                                 height="16px"
+                                 src="img/icons/eye-outline.svg"></img>
+                            <span class="views-counter">
+                                <%= userCard.card.viewsCount
+                                    %>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row header">
+                    <img src="<%= userCard.imageUrl %>">
+                    <div class="infos">
+                        <div class="name">
+                            <%= userCard.name
+                                %>
+                        </div>
+                        <div class="bio">
+                            <%= userCard.bio
+                                %>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row icon-grid">
+                    <% userCard.card.icons.forEach(icon=> { %>
+                        <div class="col-3">
+                            <div class="icon">
+                                <a href="<%= icon.link %>">
+                                    <img src="<%= icon.socialNetwork.imageUrl %>">
+                                    <div class="title">
+                                        <%= icon.title
+                                            ||
+                                            icon.socialNetwork.title
+                                            %>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <% })
+                           %>
+                </div>
+
+            </div>
+
+            <a href="https://app.x-pass.app/home"
+               class="btn register">Clique aqui e crie o seu cartão</a>
+        </div>
+    </div>
+
+    <%- include('../common/scripts')
+        %>
+
+        <script>
+            window.onload = () => {
+                addPlatformClass();
+            }
+
+            function addPlatformClass() {
+
+                if (window.innerWidth >= window.innerHeight) {
+                    document.getElementById('root').classList.add('desktop');
+                }
+            }
+        </script>
+</body>
+
+</html>

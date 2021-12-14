@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<head>
+  <%- include('../common/head', {
+		title: 'X-Pass | Todas redes sociais em uma só'
+  }) %>
+  <link rel="stylesheet" href="css/home.css">
+
+  <meta name="description" content="Crie seu cartão virtual!">
+  <meta property="og:image" itemprop="image" content="https://x-pass.app/img/logo_full.png" />
+
+  <meta name="description" content="Crie seu cartão virtual!">
+
+  <meta property="og:title" content="X-Pass" />
+  <meta property="og:url" content="https://x-pass.app" />
+  <meta property="og:image" itemprop="image" content="https://x-pass.app/img/logo_full.png" />
+  <meta property="og:description" content="Crie seu cartão virtual!">
+
+  <meta name="twitter:title" content="X-Pass" />
+  <meta name="twitter:description" content="Crie seu cartão virtual!" />
+  <meta name="twitter:url" content="https://x-pass.app" />
+  <meta name="twitter:image" content="https://x-pass.app/img/logo_full.png">
+
+  <script>
+    window.onload = () => {
+      setTimeout(() => {
+        document.getElementById('content')
+          .childNodes
+          .forEach((e, index) => {
+            if (e.className) {
+              setTimeout(() => {
+                e.className = `${e.className} show`
+              }, index * 600)
+            }
+          });
+      }, 1000)
+    }
+  </script>
+</head>
+
+<body>
+  <div class="home-container">
+    <section id="announce">
+      <!-- <h1>
+        <div>X</div>
+        <div>PASS</div>
+      </h1> -->
+
+      <div class="logo">
+        <img src="./img/logo_inner.png" />
+        <div>
+          <img src="./img/logo_outer.png" />
+          <span>PASS</span>
+        </div>
+      </div>
+
+      <h1>XPass, todas redes sociais em uma só 😉🚀</h1>
+    </section>
+    <section id="content">
+      <div class="card left">
+        🤷‍♂️ O XPass centraliza todas suas redes sociais em uma só!
+      </div>
+      <div class="card right">
+        💻 Instagram, Facebook, WhatsApp, TikTok, Linkedin, E-mail...
+      </div>
+      <div class="card left">
+        😉 Receba likes, impulsione notificações para seus seguidores e aumente sua visibilidade.
+      </div>
+      <div class="card right">
+        🃏 Crie seu cartão profissional e compartilhe com seu público!
+      </div>
+    </section>
+    <section id="access">
+      <span>
+        <a href="https://app.x-pass.app/home" class="btn-card-create">Crie seu card clicando aqui</a>
+        <!-- <br> -->
+        <!-- <div class="or">ou</div> -->
+      </span>
+      <!-- <div class="stores">
+        <a href="https://play.google.com/store" target="_blank">
+          <img src="/img/google_store.svg" alt="Download na Google Play" />
+        </a>
+        <a href="https://www.apple.com/br/ios/app-store/" target="_blank">
+          <img src="/img/app_store.svg" alt="Download na App Store" />
+        </a>
+      </div> -->
+    </section>
+  </div>
+
+  <%- include('../common/scripts') %>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "SA",
+    "password": "digital0ceanDB@",
+    "database": "CucumberResolver",
+    "host": "167.71.169.87",
+    "dialect": "mssql"
+  },
+  "test": {
+    "username": "SA",
+    "password": "digital0ceanDB@",
+    "database": "CucumberResolver",
+    "host": "167.71.169.87",
+    "dialect": "mssql"
+  },
+  "production": {
+    "username": "SA",
+    "password": "digital0ceanDB@",
+    "database": "CucumberResolver",
+    "host": "167.71.169.87",
+    "dialect": "mssql"
+  }
+}
